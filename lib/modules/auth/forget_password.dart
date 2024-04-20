@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:finalproj/modules/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -15,14 +14,14 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 import '../staff/staff_root_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key});
+class forgetpassword extends StatefulWidget {
+  forgetpassword({Key? key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<forgetpassword> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<forgetpassword> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
@@ -94,9 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // Align(
               //   alignment: Alignment.centerRight,
               //   child: TextButton(
-              //     onPressed: () {
-              //       Navigator.push(context, MaterialPageRoute(builder: (context) => forgetpassword(),));
-              //     },
+              //     onPressed: () {},
               //     child: const Text(
               //       'Forget password',
               //       style: TextStyle(color: Colors.black),
@@ -108,20 +105,20 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               loading
                   ? Center(
-                      child: CircularProgressIndicator(
-                      color: KButtonColor,
-                    ))
+                  child: CircularProgressIndicator(
+                    color: KButtonColor,
+                  ))
                   : SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: CustomButton(
-                        text: 'LOG IN',
-                        color: KButtonColor,
-                        onPressed: () {
-                          _loginHandler();
-                        },
-                      ),
-                    ),
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                child: CustomButton(
+                  text: 'LOG IN',
+                  color: KButtonColor,
+                  onPressed: () {
+                    _loginHandler();
+                  },
+                ),
+              ),
               const SizedBox(
                 height: 30,
               ),
@@ -187,10 +184,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const UserRootScreen()),
-                  (route) => false);
+                      (route) => false);
 
 
-                customSnackBar(context: context, messsage: responseData['message']);
+              customSnackBar(context: context, messsage: responseData['message']);
 
 
             }
@@ -202,12 +199,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const StaffRootScreen()),
-                  (route) => false);
-                  customSnackBar(context: context, messsage: responseData['message']);
+                      (route) => false);
+              customSnackBar(context: context, messsage: responseData['message']);
             }
           }
 
-          
+
 
           if (responseData['role'] == 4) {
             if (context.mounted) {
@@ -215,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const PhyHomeViewScreen()),
-                  (route) => false);
+                      (route) => false);
               customSnackBar(context: context, messsage: responseData['message']);
 
             }

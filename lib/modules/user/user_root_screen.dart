@@ -24,10 +24,11 @@ class _UserRootScreenState extends State<UserRootScreen> {
       appBar: AppBar(
         title: const Text(
           'Home',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
-        backgroundColor: KButtonColor,
+        elevation: 0,
+        backgroundColor: Colors.lightBlueAccent,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Container(
@@ -36,7 +37,7 @@ class _UserRootScreenState extends State<UserRootScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: NetworkImage('https://images.pexels.com/photos/208512/pexels-photo-208512.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'))
+            image: NetworkImage('https://media.istockphoto.com/id/1165046681/photo/healthcare-business-graph-and-medical-examination-and-businessman-analyzing-data-and-growth.webp?b=1&s=170667a&w=0&k=20&c=amfMlJCKcttb9RZrJ1LnHpwuJXWvCtlmS3vPMxTAgv0='))
         ),
         padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
         child: GridView.count(

@@ -51,7 +51,7 @@ class _UserPhysicianScreenState extends State<UserPhysicianScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-          image: DecorationImage(image: NetworkImage('https://images.pexels.com/photos/5327647/pexels-photo-5327647.jpeg?auto=compress&cs=tinysrgb&w=600'),fit: BoxFit.fill)
+          image: DecorationImage(image: NetworkImage('https://img.freepik.com/free-photo/flat-lay-medical-elements-arrangement-with-copy-space_23-2148502906.jpg?w=1380&t=st=1713245602~exp=1713246202~hmac=cd06fe1af92ae2394f1beb090b082b62660bfbce768f5f5532adf595d9509cb5'),fit: BoxFit.fill)
         ),
         child: FutureBuilder(
           future: _fetchphy(),

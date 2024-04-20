@@ -20,6 +20,9 @@ class _UserMedicineDetailsState extends State<UserMedicineDetails> {
     const sizedBox = SizedBox(
       height: 10,
     );
+    print(widget.medicineDetails);
+
+
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
@@ -65,35 +68,35 @@ class _UserMedicineDetailsState extends State<UserMedicineDetails> {
                               children: [
                                 ColumnText(
                                   text1: 'Description',
-                                  text2: widget.medicineDetails['description']
+                                  text2: widget.medicineDetails['description'] ?? 'description'
                                 ),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Purpose',
-                                    text2: widget.medicineDetails['purpose']),
+                                    text2: widget.medicineDetails['purpose']?? 'purpose'),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Composition',
-                                    text2: widget.medicineDetails['composition']
+                                    text2: widget.medicineDetails['composition']??'composition'
                                         
                                         ),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Strength',
-                                    text2:widget.medicineDetails['strength']
+                                    text2:widget.medicineDetails['strength'].toString()??'strength'
                                     ),
                                 ColumnText(
                                     text1: 'Brand',
-                                    text2: widget.medicineDetails['brand']
+                                    text2: widget.medicineDetails['brand']??'brand'
                                     ),
                                 ColumnText(
                                     text1: 'Quantity',
-                                    text2: widget.medicineDetails['quantity'],
+                                    text2: widget.medicineDetails['quantity'].toString()??'quantity'
                                         ),
 
                               ColumnText(
                                     text1: 'Price',
-                                    text2: widget.medicineDetails['price'].toString(),
+                                    text2: widget.medicineDetails['price'].toString()?? 'price'.toString(),
                                         ),
                               ],
                             ),

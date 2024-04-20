@@ -234,6 +234,28 @@ class _UpdateMedicineStaffState extends State<UpdateMedicineStaff> {
                       SizedBox(
                         height: 10,
                       ),
+
+                      const Text(
+                        'Medicine Quantity',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomFormTextField(
+                        hintText: 'Enter quantity',
+                        borderColor: Colors.grey.shade300,
+                        initialValue: widget.medicineStock['quantity'].toString(),
+                        validator: (value) {
+                          return value!.isEmpty ? 'Enter the price' : null;
+                        },
+                        onSaved: (value) {
+                          widget.medicineStock['quantity'] = value;
+                        },
+                      ),
                       const Text(
                         'Description',
                         style: TextStyle(

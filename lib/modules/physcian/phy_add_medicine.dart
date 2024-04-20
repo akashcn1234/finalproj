@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 
@@ -21,6 +22,9 @@ class PhyAddMedicineScreen extends StatefulWidget {
 
 class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
   final _addMedicineFormKey = GlobalKey<FormState>();
+  DateTime? newDateTime;
+  DateTime? manuDate;
+
 
   Map<String, String> medicineStock = {};
 
@@ -95,7 +99,7 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                             : Row(
                                 children: [
                                   const Text(
-                                    'Select image',
+                                    'Select Image',
                                     style: TextStyle(color: Colors.black),
                                   ),
                                   const Spacer(),
@@ -116,6 +120,59 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                         ),
                         const SizedBox(
                           height: 10,
+                        ),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            newDateTime != null
+                                ? Text(
+                                '${newDateTime!.day.toString()}/${newDateTime!.month.toString()}/${newDateTime!.year.toString()}')
+                                : const Text('Expiry Date'),
+                            CustomButton(
+                              text: newDateTime != null ? 'change' : 'select',
+                              onPressed: () async {
+                                newDateTime = await showRoundedDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(DateTime.now().year - 1),
+                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  borderRadius: 16,
+                                );
+                                if (newDateTime != null) {
+
+                                  medicineStock['expiry_date'] = "${newDateTime!.day}-${newDateTime!.month}-${newDateTime!.year}";
+                                  setState(() {});
+                                }
+                              },
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            manuDate != null
+                                ? Text(
+                                '${manuDate!.day.toString()}-${manuDate!.month.toString()}-${manuDate!.year.toString()}')
+                                : const Text('Manufacture Date'),
+                            CustomButton(
+                              text: manuDate != null ? 'change' : 'select',
+                              onPressed: () async {
+
+
+                                manuDate = await showRoundedDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(DateTime.now().year - 1),
+                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  borderRadius: 16,
+                                );
+                                if (manuDate != null) {
+                                  setState(() {});
+                                }
+                              },
+                            )
+                          ],
                         ),
                         CustomFormTextField(
                           hintText: 'Enter name',
@@ -235,6 +292,9 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                             medicineStock['description'] = value!;
                           },
                         ),
+
+
+
                         SizedBox(
                           height: 30,
                         ),

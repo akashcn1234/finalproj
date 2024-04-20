@@ -12,9 +12,9 @@ import '../../widgets/column_text.dart';
 import '../../widgets/custom_button.dart';
 
 class StaffMedicineDetailsScreen extends StatefulWidget {
-  const StaffMedicineDetailsScreen({super.key, required this.image, required this.medicineDetails});
+  const StaffMedicineDetailsScreen({super.key, required this.medicineDetails});
 
-  final String image;
+
   final Map<String, dynamic> medicineDetails;
 
   @override
@@ -76,6 +76,8 @@ class _StaffMedicineDetailsScreenState extends State<StaffMedicineDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
+
+    print(widget.medicineDetails);
     const sizedBox = SizedBox(
       height: 10,
     );
@@ -155,30 +157,30 @@ class _StaffMedicineDetailsScreenState extends State<StaffMedicineDetailsScreen>
                               children: [
                                 ColumnText(
                                   text1: 'Description',
-                                  text2: widget.medicineDetails['description']
+                                  text2: widget.medicineDetails['description'].toString()
                                 ),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Purpose',
-                                    text2: widget.medicineDetails['purpose']),
+                                    text2: widget.medicineDetails['purpose'].toString()),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Composition',
-                                    text2: widget.medicineDetails['composition']
+                                    text2: widget.medicineDetails['composition'].toString()
                                         
                                         ),
                                 sizedBox,
                                 ColumnText(
                                     text1: 'Strength',
-                                    text2:widget.medicineDetails['strength']
+                                    text2:widget.medicineDetails['strength'].toString()
                                     ),
                                 ColumnText(
                                     text1: 'Brand',
-                                    text2: widget.medicineDetails['brand']
+                                    text2: widget.medicineDetails['brand'].toString()
                                     ),
                                 ColumnText(
                                     text1: 'Quantity',
-                                    text2: widget.medicineDetails['quantity'],
+                                    text2: widget.medicineDetails['quantity'].toString(),
                                         ),
 
                               ColumnText(

@@ -28,7 +28,7 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
 
     final response = await http.put(url, body: {'stock': stock});
 
-      Navigator.pop(context,true);
+    Navigator.pop(context,true);
 
     if (response.statusCode != 200) {
       throw Exception('Failed to update medicine stock');
@@ -38,7 +38,9 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
   Future<void> deleteMedicine(String id, String stock) async {
     final url = Uri.parse('$baseUrl/api/staff/update-med-stock/$id');
 
-    final response = await http.put(url, body: {'stock': '0'});
+    final response = await http.put(url, body: {'stock': stock});
+
+    Navigator.pop(context,true);
 
     if (response.statusCode != 200) {
       throw Exception('Failed to update medicine stock');
@@ -46,6 +48,7 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
   }
 
   final stockController = TextEditingController();
+  final deleteController = TextEditingController();
 
   bool _loading = false;
 
@@ -83,9 +86,13 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
 
                                  Navigator.pop(context);
 
+                                 var total = widget.data['stock'] + int.parse(stockController.text);
+
+                                 print(total);
+
 
                                   await updateMedicineStock(
-                                      widget.data['_id'], stockController.text);
+                                      widget.data['_id'], total.toString());
                                   setState(() {
                                     _loading = false;
                                   });
@@ -106,15 +113,59 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
               text: 'Delete stock',
               color: Colors.red,
               onPressed: () async {
-                setState(() {
-                  _loading = true;
-                });
 
-                await deleteMedicine(widget.data['_id'], '0');
 
-                Navigator.pop(context,true);
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Delete'),
+                      content: _loading
+                          ? indicator
+                          : CustomTextField(
+                        controller: deleteController,
+                        hintText: 'Enter stock',
+                      ),
+                      actions: [
+                        CustomButton(
+                          text: 'Delete',
+                          onPressed: () async {
+                            if (deleteController.text.isNotEmpty) {
 
-                _loading = false;
+                              Navigator.pop(context);
+
+                              var total = widget.data['stock'] - int.parse(deleteController.text);
+
+
+                              await deleteMedicine( widget.data['_id'], total.toString());
+
+
+
+
+
+
+
+                              setState(() {
+                                _loading = false;
+                              });
+                            } else {
+                              customSnackBar(
+                                  context: context,
+                                  messsage: 'Fill the field');
+                            }
+                          },
+                        )
+                      ],
+                    ));
+
+
+
+
+
+
+
+
+
+
               },
             ),
           ),
