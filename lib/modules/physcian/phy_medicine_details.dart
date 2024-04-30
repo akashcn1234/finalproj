@@ -91,6 +91,18 @@ class _PhyMedicineDetailsScreenState extends State<PhyMedicineDetailsScreen> {
                                       text1: 'Strength',
                                       text2:
                                           widget.medicineDetails['strength']),
+                                  sizedBox,
+                                  ColumnText(
+                                      text1: 'Manufature_date',
+                                      text2:
+                                      widget.medicineDetails['manu_date']??'date'),
+                                  sizedBox,
+                                  ColumnText(
+                                      text1: 'Expiry_date',
+                                      text2:
+                                      widget.medicineDetails['expiry_date']??'gggg'),
+
+
                                   ColumnText(
                                       text1: 'Brand',
                                       text2: widget.medicineDetails['brand']),

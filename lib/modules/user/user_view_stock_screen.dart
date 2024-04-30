@@ -181,6 +181,8 @@ class _UserViewStockSceeenState extends State<UserViewStockSceeen> {
                                       price: _filteredMedicineList[index]['price'].toString(),
                                       imageUrl: _filteredMedicineList[index]['image'].toString(),
                                       stock: _filteredMedicineList[index]['stock'].toString(),
+                                      manuDate: _filteredMedicineList[index]['manu_date'].toString(),
+                                      expDate:  _filteredMedicineList[index]['expiry_date'].toString(),
                                     ),
                                   ),
                                 );

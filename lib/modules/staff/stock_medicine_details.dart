@@ -223,6 +223,16 @@ class _StaffStockMedicineDetailsState extends State<StaffStockMedicineDetails> {
                                     text2: widget.data['stock'].toString()),
                                 sizedBox,
                                 ColumnText(
+                                    text1: 'Manufacture Date:',
+                                    text2: widget.data['manu_date'].toString()),
+                                sizedBox,
+
+
+                                ColumnText(
+                                    text1: 'Expiry Date:',
+                                    text2: widget.data['expiry_date'].toString()),
+                                sizedBox,
+                                ColumnText(
                                     text1: 'Description',
                                     text2: widget.data['description']),
 

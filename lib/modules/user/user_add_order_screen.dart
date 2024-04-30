@@ -20,9 +20,13 @@ class UserAddOrderScreen extends StatefulWidget {
       required this.name,
       required this.price,
       required this.stock,
-      required this.id});
+      required this.id,
+        required this.manuDate,
+        required this.expDate});
 
   final String imageUrl;
+  final String manuDate;
+  final String expDate;
   final String description;
   final String stock;
   final String name;
@@ -88,6 +92,14 @@ class _UserAddOrderScreenState extends State<UserAddOrderScreen> {
                       const SizedBox(
                         height: 25,
                       ),
+                      ColumnText(text1: 'Manfa', text2: widget.manuDate),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      ColumnText(text1: 'Expa', text2: widget.expDate),
+
+
+
                       const Text(
                         'Quantity',
                         style: TextStyle(

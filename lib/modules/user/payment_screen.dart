@@ -1,11 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 import '../../widgets/custom_button.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
    PaymentScreen({super.key});
 
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
   final _formKey = GlobalKey<FormState>();
+
+   DateTime? manuDate;
+
+   final controller = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +62,40 @@ class PaymentScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      validator: (value) => value!.isEmpty ? 'Fill the value' : null,
-                      decoration: InputDecoration(
-                          hintText: 'Expair Date',
-                          enabledBorder: outlineInputBorder,
-                          focusedBorder: outlineInputBorder,
-                          border: outlineInputBorder,
-                          hintStyle: TextStyle(
-                              color: Colors.grey.shade400,
-                              fontWeight: FontWeight.w400),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
-                              borderSide: const BorderSide(color: Colors.red))),
+                    child: GestureDetector(
+                      onTap: () async{
+
+                        manuDate = await showRoundedDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(DateTime.now().year - 1),
+                          lastDate: DateTime(DateTime.now().year + 1),
+                          borderRadius: 16,
+                        );
+                        if (manuDate != null) {
+                          controller.text = '${manuDate!.day}/${manuDate!.month}/${manuDate!.year}';
+                          setState(() {});
+                        }
+
+                      },
+                      child: TextField(
+                        enabled: false,
+                       controller   : controller,
+
+
+                        decoration: InputDecoration(
+
+                            hintText: 'Expair Date',
+                            enabledBorder: outlineInputBorder,
+                            focusedBorder: outlineInputBorder,
+                            border: outlineInputBorder,
+                            hintStyle: TextStyle(
+                                color: Colors.grey.shade400,
+                                fontWeight: FontWeight.w400),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25.0),
+                                borderSide: const BorderSide(color: Colors.red))),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10.0),
@@ -93,7 +126,7 @@ class PaymentScreen extends StatelessWidget {
                   Navigator.pop(context ,true);
 
                 }
-                
+
               },)
             ],
           ),

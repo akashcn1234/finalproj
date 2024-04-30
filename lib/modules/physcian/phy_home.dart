@@ -28,8 +28,14 @@ class _PhyHomeViewScreenState extends State<PhyHomeViewScreen> {
     final url = Uri.parse('$baseUrl/api/view-med');
     final response = await http.get(url);
 
+
+    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+
+
+
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
+      print(jsonData['data'].last);
 
       final List<dynamic> data = jsonData['data'];
       return data;

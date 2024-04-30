@@ -182,6 +182,14 @@ class _StaffMedicineDetailsScreenState extends State<StaffMedicineDetailsScreen>
                                     text1: 'Quantity',
                                     text2: widget.medicineDetails['quantity'].toString(),
                                         ),
+                                ColumnText(
+                                  text1: 'Manufacturing Date',
+                                  text2: widget.medicineDetails['manu_date'].toString(),
+                                ),
+                                ColumnText(
+                                  text1: 'Expiry Date',
+                                  text2: widget.medicineDetails['expiry_date'].toString(),
+                                ),
 
                               ColumnText(
                                     text1: 'Price',

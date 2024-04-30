@@ -160,6 +160,8 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                               onPressed: () async {
 
 
+
+
                                 manuDate = await showRoundedDatePicker(
                                   context: context,
                                   initialDate: DateTime.now(),
@@ -167,6 +169,9 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                                   lastDate: DateTime(DateTime.now().year + 1),
                                   borderRadius: 16,
                                 );
+
+                                medicineStock['manu_date'] = "${manuDate!.day}-${manuDate!.month}-${manuDate!.year}";
+
                                 if (manuDate != null) {
                                   setState(() {});
                                 }
@@ -361,6 +366,8 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
       medicineStock['price'] = '0';
       medicineStock['quantity'] = '0';
 
+
+
       await addMedicineDB(medicineStock, image!.path);
 
       _addMedicineFormKey.currentState!.reset();
@@ -375,6 +382,9 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
 
   Future<void> addMedicineDB(Map<String, String> data, String filepath) async {
     const url = '$baseUrl/api/physician/add-med';
+    print('===========================================================================');
+
+    print(data);
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -400,6 +410,7 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
         });
       }
     } catch (e) {
+      print(e);
       setState(() {
         _loading = true;
       });

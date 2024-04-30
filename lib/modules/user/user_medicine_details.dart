@@ -94,7 +94,19 @@ class _UserMedicineDetailsState extends State<UserMedicineDetails> {
                                     text2: widget.medicineDetails['quantity'].toString()??'quantity'
                                         ),
 
-                              ColumnText(
+                                sizedBox,
+                                ColumnText(
+                                    text1: 'Manufature_date',
+                                    text2:
+                                    widget.medicineDetails['manu_date']??'date'),
+                                sizedBox,
+                                ColumnText(
+                                    text1: 'Expiry_date',
+                                    text2:
+                                    widget.medicineDetails['expiry_date']??'gggg'),
+
+
+                                ColumnText(
                                     text1: 'Price',
                                     text2: widget.medicineDetails['price'].toString()?? 'price'.toString(),
                                         ),
@@ -113,6 +125,8 @@ class _UserMedicineDetailsState extends State<UserMedicineDetails> {
               child: CustomButton(
                 text: 'Order now',
                 onPressed: () {
+
+                  print(widget.medicineDetails['stock']);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -121,8 +135,10 @@ class _UserMedicineDetailsState extends State<UserMedicineDetails> {
                         description: widget.medicineDetails['description'],
                         name: widget.medicineDetails['medicine'],
                         price: widget.medicineDetails['price'].toString(),
-                        stock: '0',
-                        imageUrl:widget.medicineDetails['image']
+                        stock: widget.medicineDetails['stock'].toString(),
+                        imageUrl:widget.medicineDetails['image'],
+                        manuDate:widget.medicineDetails['manu_date'] ?? 'manudate',
+                        expDate: widget.medicineDetails['expiry_date'] ?? 'expirydates',
                       
 
                       
