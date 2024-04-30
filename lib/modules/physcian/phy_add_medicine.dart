@@ -136,7 +136,7 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(DateTime.now().year - 1),
-                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  lastDate: DateTime(DateTime.now().year + 10),
                                   borderRadius: 16,
                                 );
                                 if (newDateTime != null) {
@@ -166,7 +166,7 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(DateTime.now().year - 1),
-                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  lastDate: DateTime(DateTime.now().year + 10),
                                   borderRadius: 16,
                                 );
 
@@ -363,20 +363,36 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
     if (validate) {
       _addMedicineFormKey.currentState!.save();
 
-      medicineStock['price'] = '0';
-      medicineStock['quantity'] = '0';
+      if(image != null){
+
+
+        medicineStock['price'] = '0';
+        medicineStock['quantity'] = '0';
 
 
 
-      await addMedicineDB(medicineStock, image!.path);
+        await addMedicineDB(medicineStock, image!.path);
 
-      _addMedicineFormKey.currentState!.reset();
+        _addMedicineFormKey.currentState!.reset();
 
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.success,
-        text: 'Transaction Completed Successfully!',
-      );
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: 'Transaction Completed Successfully!',
+        );
+
+
+      }else{
+
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.info,
+          text: 'Add medicine image!',
+        );
+
+      }
+
+
     }
   }
 
@@ -400,7 +416,10 @@ class _PhyAddMedicineScreenState extends State<PhyAddMedicineScreen> {
 
       var response = await request.send();
 
-      if (response.statusCode == 200) {
+
+      if (response.statusCode == 201) {
+
+        Navigator.pop(context,true);
         setState(() {
           _loading = false;
         });

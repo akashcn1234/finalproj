@@ -83,13 +83,19 @@ class _PhyHomeViewScreenState extends State<PhyHomeViewScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: CustomButton(
           text: 'Add new medicine',
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            bool update =  await   Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => PhyAddMedicineScreen(),
               ),
             );
+
+            if(update){
+              setState(() {
+
+              });
+            }
           },
         ),
       ),
@@ -175,8 +181,8 @@ class _PhyHomeViewScreenState extends State<PhyHomeViewScreen> {
                                               MediaQuery.of(context).size.width,
                                           child: CustomButton(
                                             text: 'view more',
-                                            onPressed: () {
-                                              Navigator.push(
+                                            onPressed: ()  async{
+                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
